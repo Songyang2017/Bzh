@@ -1,0 +1,82 @@
+.icon-address {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe900;');
+}
+.icon-alipay {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe901;');
+}
+.icon-back {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe902;');
+}
+.icon-balance {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe903;');
+}
+.icon-beautyMake {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe904;');
+}
+.icon-check {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe909;');
+}
+.icon-delete {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90b;');
+}
+.icon-down {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90c;');
+}
+.icon-downBlack {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90d;');
+}
+.icon-edit {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90e;');
+}
+.icon-enterRight {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe90f;');
+}
+.icon-exercise {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe910;');
+}
+.icon-famale {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe912;');
+}
+.icon-fire {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe914;');
+}
+.icon-fitness {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe915;');
+}
+.icon-healthyService {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe918;');
+}
+.icon-hook {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91d;');
+}
+.icon-ladybro {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe91e;');
+}
+.icon-male {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe921;');
+}
+.icon-medical {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe923;');
+}
+.icon-mon-bay {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe926;');
+}
+.icon-myActive {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe928;');
+}
+.icon-Oval-3 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe929;');
+}
+.icon-parents {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe92a;');
+}
+.icon-up {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe930;');
+}
+.icon-upBlack {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe931;');
+}
+.icon-wechatPay {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe932;');
+}
+
