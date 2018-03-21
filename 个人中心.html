@@ -160,15 +160,49 @@
 	    </p>
 	  </a>
 	</div>
+
+	<div style="height: 80px;"></div>	
 	
-	
-	<div style="height: 20px;"></div>
+
+	<div class="weui-tabbar">
+	    <a href="./首页.html" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" height="52" width="52" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">首页</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">活动</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">发现</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">购物车</p>
+	    </a>
+	    <a href="./个人中心.html" class="weui-tabbar__item weui-bar__item--on">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">个人中心</p>
+	    </a>
+	</div>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>	
 <script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
 <script>
 var hostMsg = {
 	pic: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521538727214&di=a9002a3404698928977a00bfc6a8d19f&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201511%2F23%2F20151123201019_ztZRM.jpeg",
+	// pic:'icon/1.jpg',
 	name: "陈妍希",
 	'account':'awe1343445'
 }
@@ -178,7 +212,7 @@ $(function(){
 		'backgroundImage':'url('+hostMsg.pic+')'
 	})
 	$('.background').css({
-		'background':'url('+hostMsg.pic+') 0 20% /cover'
+		'background':'url('+hostMsg.pic+') 0 30% /cover'
 	})
 	$('.ava-msg').html(hostMsg.name)
 	$('.ava-wechat-account').html('微信号：'+hostMsg.account)

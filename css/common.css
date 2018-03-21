@@ -43,3 +43,9 @@ body {
 .textRight {
   text-align: right;
 }
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}

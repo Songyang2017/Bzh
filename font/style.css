@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'bzh';
-  src:  url('fonts/bzh.eot?d28p2r');
-  src:  url('fonts/bzh.eot?d28p2r#iefix') format('embedded-opentype'),
-    url('fonts/bzh.ttf?d28p2r') format('truetype'),
-    url('fonts/bzh.woff?d28p2r') format('woff'),
-    url('fonts/bzh.svg?d28p2r#bzh') format('svg');
+  src:  url('./fonts/bzh.eot?d28p2r');
+  src:  url('./fonts/bzh.eot?d28p2r#iefix') format('embedded-opentype'),
+    url('./fonts/bzh.ttf?d28p2r') format('truetype'),
+    url('./fonts/bzh.woff?d28p2r') format('woff'),
+    url('./fonts/bzh.svg?d28p2r#bzh') format('svg');
   font-weight: normal;
   font-style: normal;
 }

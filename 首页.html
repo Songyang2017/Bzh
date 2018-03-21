@@ -13,6 +13,7 @@
 <style>
 	.swiper-container{
 	    width: 100%;
+	    font-size: 0;
 	    /*height: 30%;*/
 	}  
 	.swiper-slide>img{
@@ -20,8 +21,12 @@
 	}
 </style>
 <body>
+<div id="app" v-cloak>
+	<!--     轮播图      -->
 	<div class="searchTitle">	
 		<div class="index-search-bar">
+			<span class="brand">百智汇</span>
+			<!-- <div class="log-icon">登录</div> -->
 			<input type="search">
 			<div class="searchTip">
 				<i class="weui-icon-search"></i>
@@ -37,31 +42,341 @@
 	    </div>
 	    <!-- 如果需要分页器 -->
 	    <div class="swiper-pagination"></div>
-	    
+	</div>
+	
+
+	<!--     功能模块      -->
+	<div class="func-icon-channel">
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload="src='icon/健康服务.png'" height="70" width="70" alt="">
+			<p>健康服务</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/保健.png"' height="70" width="70" alt="">
+			<p>保健</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/美妆.png"'  height="70" width="70" alt="">
+			<p>美妆</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/医药.png"'  height="70" width="70" alt="">
+			<p>医药</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/运动.png"'  height="70" width="70" alt="">
+			<p>运动</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/母婴.png"'  height="70" width="70" alt="">
+			<p>母婴</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/父母.png"'  height="70" width="70" alt="">
+			<p>父母</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/男性.png"'  height="70" width="70" alt="">
+			<p>男性</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/女性.png"'  height="70" width="70" alt="">
+			<p>女性</p>
+		</a>
+		<a href="javascript:;">
+			<img src="icon/channel_picBg.png" onload='src="icon/闺蜜.png"'  height="70" width="70" alt="">
+			<p>闺蜜</p>
+		</a>
+	</div>
+	
+
+	<!--     热门活动     -->
+	<div class="hot-active">
+		<div class="hot-active-style">
+			<img src="icon/Rectangle_left.png" height="2" width="143" alt="">
+			<span>热门活动</span>
+			<img src="icon/Rectangle_right.png" height="2" width="143" alt="">
+		</div>
+		<div class="hot-content">
+			<img src="icon/火 (1).png" alt="">
+			<span>今日最受欢迎</span>
+		</div>
+		<div class="goodsSlider">
+			<div class="swiper-wrapper" style="width: auto;">
+				<a href="javascript:;" class="swiper-slide" v-for="item in goodsList">
+					<img :src="item.pic" alt="">
+					<p>{{item.name}}</p>
+					<p>{{item.description}}</p>
+					<p>￥{{item.price}}</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="hot-active">
+		<div class="hot-active-style">
+			<img src="icon/Rectangle_left.png" height="2" width="143" alt="">
+			<span>为您推荐</span>
+			<img src="icon/Rectangle_right.png" height="2" width="143" alt="">
+		</div>
+		<div class="hot-content">
+			<span>根据您的年龄、喜好、购买习惯推荐以下商品</span>
+		</div>
+		<ul class="recommendList">
+			<li v-for="item in recommendList">
+				<a href="javascript:;">
+					<img :src="item.pic" alt="">
+					<p>{{item.name}}</p>
+					<p>{{item.description}}</p>
+					<p class="recommendList-price">
+						<span class="newPrice">￥{{item.newPrice}}</span>&emsp;<span v-if="item.oldPrice" class="oldPrice">￥{{item.oldPrice}}</span>
+					</p>
+				</a>	
+			</li>
+		</ul>
 	</div>
 
-<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<!--   footer   -->
+	<div class="weui-footer">
+	  <p class="weui-footer__links">
+	    <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+	  </p>
+	  <p class="weui-footer__text">Copyright © 2008-2016 weui.io</p>
+	</div>
+	
+	
+	<div class="gobackTop"></div>
+
+	<div style="height: 55px;"></div>
+	<!--     footBar      -->
+	 <div class="weui-tabbar">
+	    <a href="javascript:;" class="weui-tabbar__item weui-bar__item--on">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" height="52" width="52" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">首页</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">活动</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">发现</p>
+	    </a>
+	    <a href="javascript:;" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">购物车</p>
+	    </a>
+	    <a href="./个人中心.html" class="weui-tabbar__item">
+	      <div class="weui-tabbar__icon">
+	        <img src="icon/bg-icon.png" alt="">
+	      </div>
+	      <p class="weui-tabbar__label">个人中心</p>
+	    </a>
+	  </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>	
 <script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
 <script type="text/javascript" src="http://static.jsk365.com/swiper/4.0.7/swiper.min.js"></script>
 <script>
 	$('.index-search-bar>input').focus(function(){
-		$('.weui-icon-search').css({'left':'5px','marginLeft':'0'});
+		$('.searchTip').css({'left':'5px','marginLeft':'0'});
+		$('.searchTip>span').hide()
 	})
 	$('.index-search-bar>input').blur(function(){
-		$('.weui-icon-search').css({'left':'50%','marginLeft':'-7px'});
+		$('.searchTip').css({'left':'50%','marginLeft':'-10%'});
+		$('.searchTip>span').show()
 	})
+
+
+
+//	goBackTop事件
+	$(document).scroll(function(){
+		var $scrollTop = $(this).scrollTop();
+
+		if($scrollTop >= window.screen.height) {
+            $(".gobackTop").show();
+        } else {
+             $(".gobackTop").hide();
+        }
+	})
+	$(".gobackTop").click(function() {
+		console.log(11);
+        $("html,body").animate({
+            scrollTop: 0
+        }, 300);
+    });
 </script>
 <script>
-	var mySwiper = new Swiper ('.swiper-container', {
-		    direction: 'horizontal',
-		    loop: true,
-		    pagination: {
-		    	el:'.swiper-pagination',
 
-		    },
-		})        
+//	轮播图swiper
+	function swiperInit(){
+		var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'horizontal',
+			    loop: true,
+			    pagination: {
+			    	el:'.swiper-pagination',
+			    },
+			})        
 
+		var goodsSlider = new Swiper ('.goodsSlider', {
+			    direction: 'horizontal',
+			    slidesPerView:3.5,
+			    spaceBetween:0,
+			})
+	}
+	var goodsList = [
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		},
+		{
+			name:`佳思敏nature's`,
+			pic: `./icon/bg-icon.png`,
+			description: `维他命C+新软牛轧糖皮`,
+			price: `68`
+		}
+	]
+	var recommendList = [
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮坚果棒棒的`,
+			newPrice: `68`,
+			oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`大白兔`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		},
+		{
+			pic: `./icon/bg-icon.png`,
+			name:`佳思敏nature's`,
+			description: `维他命C+新软牛轧糖皮`,
+			newPrice: `68`,
+			// oldPrice:`98`
+		}
+	]
+
+
+//	Vue部分
+	var app = new Vue({
+		el:'#app',
+		data:{
+			goodsList:goodsList,
+			recommendList:recommendList
+		},
+		mounted:function(){
+			swiperInit()
+		}
+	})
 </script>	
 </body>
 </html>
