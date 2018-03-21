@@ -1,0 +1,50 @@
+@import 'mixin';
+@import 'variable';
+
+*{
+	box-sizing: border-box;
+}
+
+html,body,#app{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	background: @color-background;
+}
+
+[v-cloak]{
+	display: none !important;
+}
+
+.vertically{
+	position: absolute;
+	top: 50%;
+	.translate(0,-50%,0);
+}
+
+.flex{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items:center;
+}
+
+.no-wrap{
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.textCenter{
+	text-align: center;
+}
+.textLeft{
+	text-align: left;
+}
+.textRight{
+	text-align: right;
+}

@@ -1,0 +1,30 @@
+//函数
+.border-radius (@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.translate(@x, @y, @z){
+	transform: translate3d(@x, @y, @z);
+	-webkit-transform: translate3d(@x, @y, @z);
+	-ms-transform: translate3d(@x, @y, @z);
+	-moz-transform: translate3d(@x, @y, @z);
+}
+
+.scale(@x, @y){
+	transform: scale(@x, @y);
+	-webkit-transform: scale(@x, @y);
+	-ms-transform: scale(@x, @y);
+	-moz-transform: scale(@x, @y);	
+}
+
+.box-shadow (@x, @y, @blur, @color) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+.blur(@x){
+	filter:blur(@x);
+	-webkit-filter:blur(@x);
+}
