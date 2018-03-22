@@ -27,12 +27,43 @@
 </div>
 <img src="http://img3.duitang.com/uploads/item/201507/07/20150707192657_ekaGd.jpeg" alt="">
 
-<script src="js/jquery.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/icheck.js"></script>
 <script src="http://cdn.bootcss.com/eruda/1.4.0/eruda.min.js"></script>
 <script>eruda.init();</script>
 <script>
-	
+		$(document).scroll(function(){
+			var $scrollTop = $(this).scrollTop();
+			console.log($scrollTop);
+		})
+		$('.box').click(function(){
+			console.log(11);
+		})
+	   //TopSectionHeader
+	//     var $header = $(".top-section > .header");
+	//     var $goTop = $(".float-btn > a[data-action='goTop']");
+	//     var headerOffsetTop = $header.offset().top;
+	//     $(document).scroll(function() {
+	//         //ToggleHeaderStyle
+	//         var $scrollTop = $(this).scrollTop();
+	//         //椤堕儴鎼滅储鏉℃帶鍒�
+	// //      if($scrollTop > headerOffsetTop + 42) {
+	// //          $header.addClass("active");
+	// //      } else {
+	// //          $header.removeClass("active");
+	// //      }
+	//         //ToggleFloatBtn GoTop
+	//         if($scrollTop >= window.screen.height) {
+	//             $goTop.addClass("show");
+	//         } else {
+	//             $goTop.removeClass("show");
+	//         }
+	//     });
+	//     $goTop.click(function() {
+	//         $("html,body").animate({
+	//             scrollTop: 0
+	//         }, 300);
+	    // });
 </script>
 </body>
 </html>

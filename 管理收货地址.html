@@ -35,6 +35,16 @@
 <script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 <script src="js/icheck.min.js"></script>
 <script>
+	//单选框
+	$(document).ready(function(){
+	  $('input').iCheck({
+	    checkboxClass: 'icheckbox_square-orange',
+	    radioClass: 'iradio_square-orange',
+	    increaseArea: '20%' // optional
+	  });
+	});
+</script>	
+<script>
 	var fakeMsg = [
 		{
 			name:'王红',
@@ -68,15 +78,6 @@
 		}
 	})
 
-
-	$(document).ready(function(){
-	  $('input').iCheck({
-	    checkboxClass: 'icheckbox_square-orange',
-	    radioClass: 'iradio_square-orange',
-	    increaseArea: '20%' // optional
-	  });
-	});
-	
 </script>
 </body>
 </html>

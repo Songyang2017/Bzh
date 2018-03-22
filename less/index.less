@@ -101,6 +101,7 @@
 }
 
 .activeThemeTitle{
+		// padding-right: 31px;
 	color:@color-text-ll;
 }
 
@@ -109,7 +110,9 @@
 }
 
 .activeArea{
+	.multiEllipsis(2);
 	color: @color-gray;
+	height: 39px;
 }
 
 .Itemstip{
@@ -403,7 +406,6 @@
 	width: 100%;
 	font-size:0;
 	margin-top: 10px;
-	// background-color: @color-eleBackground;
 	.hot-active-style{
 		.flex();
 		justify-content:center;
@@ -412,7 +414,7 @@
 			width: 30%;
 		}
 		>span{
-			padding: 5px 5px 2px 5px;
+			padding: 5px;
 			color:@color-price;
 			font-size: @font-size-large;
 		}
@@ -492,6 +494,29 @@
 			}
 		}
 	}
+	>.active-desc-title{/* 活动详情页 */
+		background-color:@color-eleBackground;
+		font-size: @font-size-large;
+		padding: 10px 15px;
+		color:@color-gray;
+		position: relative;
+		width: 100%;
+		&:after{
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			border-bottom: 1px solid @color-border;
+			.scale(1,.5)
+		}
+	}
+	>.active-content{
+		background-color:@color-eleBackground;
+		font-size: @font-size-large;
+		padding: 10px 15px;
+		.word-break()
+	}
 }
 
 .gobackTop{
@@ -524,3 +549,33 @@
 .weui-tabbar{
 	position: fixed;
 }
+
+
+.active-detail-desc-p1{
+	font-size: 0;
+	.title{
+		.weui-media-box{
+			padding: 10px 15px;
+			.weui-media-box__title{
+				font-size: @font-size-large-x;
+			}
+			.weui-media-box__desc{
+				font-size: @font-size-medium;
+			}
+		}
+	}
+	>.weui-cell{
+		font-size: @font-size-large;
+	}
+	>.hosterMsg{
+		>.weui-media-box__bd{
+			.weui-media-box__title{
+				font-size: @font-size-large-x;
+			}
+			.weui-media-box__desc{
+				font-size: @font-size-medium;
+			}	
+		}
+	}
+}
+

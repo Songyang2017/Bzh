@@ -1,0 +1,241 @@
+@font-face {
+  font-family: 'bzh';
+  src:  url('./fonts/bzh.eot?d28p2r');
+  src:  url('./fonts/bzh.eot?d28p2r#iefix') format('embedded-opentype'),
+    url('./fonts/bzh.ttf?d28p2r') format('truetype'),
+    url('./fonts/bzh.woff?d28p2r') format('woff'),
+    url('./fonts/bzh.svg?d28p2r#bzh') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bzh' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-address:before {
+  content: "\e900";
+  color: #c9c9c9;
+}
+.icon-alipay:before {
+  content: "\e901";
+  color: #039feb;
+}
+.icon-back:before {
+  content: "\e902";
+  color: #ff9b26;
+}
+.icon-balance:before {
+  content: "\e903";
+  color: #f89826;
+}
+.icon-beautyMake .path1:before {
+  content: "\e904";
+  color: rgb(255, 104, 104);
+}
+.icon-beautyMake .path2:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-beautyMake .path3:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-beautyMake .path4:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-beautyMake .path5:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-check .path1:before {
+  content: "\e909";
+  color: rgb(248, 152, 38);
+}
+.icon-check .path2:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-delete:before {
+  content: "\e90b";
+  color: #888;
+}
+.icon-down:before {
+  content: "\e90c";
+  color: #ffc988;
+}
+.icon-downBlack:before {
+  content: "\e90d";
+}
+.icon-edit:before {
+  content: "\e90e";
+  color: #888;
+}
+.icon-enterRight:before {
+  content: "\e90f";
+  color: #888;
+}
+.icon-exercise .path1:before {
+  content: "\e910";
+  color: rgb(58, 179, 255);
+}
+.icon-exercise .path2:before {
+  content: "\e911";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-famale .path1:before {
+  content: "\e912";
+  color: rgb(255, 155, 38);
+}
+.icon-famale .path2:before {
+  content: "\e913";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-fire:before {
+  content: "\e914";
+  color: #fd7170;
+}
+.icon-fitness .path1:before {
+  content: "\e915";
+  color: rgb(255, 155, 38);
+}
+.icon-fitness .path2:before {
+  content: "\e916";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-fitness .path3:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-healthyService .path1:before {
+  content: "\e918";
+  color: rgb(58, 179, 255);
+}
+.icon-healthyService .path2:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-healthyService .path3:before {
+  content: "\e91a";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-healthyService .path4:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-healthyService .path5:before {
+  content: "\e91c";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-hook:before {
+  content: "\e91d";
+  color: #ff9b26;
+}
+.icon-ladybro .path1:before {
+  content: "\e91e";
+  color: rgb(255, 104, 104);
+}
+.icon-ladybro .path2:before {
+  content: "\e91f";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-ladybro .path3:before {
+  content: "\e920";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-male .path1:before {
+  content: "\e921";
+  color: rgb(58, 179, 255);
+}
+.icon-male .path2:before {
+  content: "\e922";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-medical .path1:before {
+  content: "\e923";
+  color: rgb(40, 212, 195);
+}
+.icon-medical .path2:before {
+  content: "\e924";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-medical .path3:before {
+  content: "\e925";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-mon-bay .path1:before {
+  content: "\e926";
+  color: rgb(255, 155, 38);
+}
+.icon-mon-bay .path2:before {
+  content: "\e927";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-myActive:before {
+  content: "\e928";
+  color: #ff9b26;
+}
+.icon-Oval-3:before {
+  content: "\e929";
+}
+.icon-parents .path1:before {
+  content: "\e92a";
+  color: rgb(40, 212, 195);
+}
+.icon-parents .path2:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-parents .path3:before {
+  content: "\e92c";
+  margin-left: -1em;
+  color: rgb(40, 212, 195);
+}
+.icon-parents .path4:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-up:before {
+  content: "\e930";
+  color: #ffc988;
+}
+.icon-upBlack:before {
+  content: "\e931";
+}
+.icon-wechatPay:before {
+  content: "\e932";
+  color: #0ab70e;
+}

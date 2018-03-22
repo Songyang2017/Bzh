@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>商品列表</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/orange.css">
+<style>
+.p-setNum {
+    display: block;
+    float: right;
+    width: 80px;
+    height: 24px;
+    overflow: hidden;
+    border-radius: 2px;
+    border: 1px solid #E4E4E4;
+    vertical-align: middle;
+}
+.p-setNum span {
+    display: inline-block;
+    cursor: pointer;
+    width: 24px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0.7;
+    float: left;
+    color: #000;
+    -webkit-user-select: none;
+}
+.p-setNum input {
+    box-sizing: border-box;
+    width: 30px;
+    height: 22px;
+    border: none;
+    outline: none;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-family: simhei;
+    float: left;
+}
+</style>
+</head>
+<body>
+<div class="weui-tab" id="app" v-cloak>
+	<div class="weui-search-bar" style="background-color: #fff;padding:10px 30px" id="searchBar">
+	  <form class="weui-search-bar__form">
+	    <div class="weui-search-bar__box" style="background: #f4f4f4;">
+	      <i class="weui-icon-search"></i>
+	      <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+	      <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+	    </div>
+	    <label class="weui-search-bar__label" style="background:#f4f4f4" id="searchText">
+	      <i class="weui-icon-search"></i>
+	      <span>搜索</span>
+	    </label>
+	  </form>
+	  <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+	</div>
+		
+	<!-- <div class="goodsItemList">
+		<ul class="goods-content">
+			<li class="weui-flex" v-for="item in orderList">
+				<div class="img"><img src="../icon/bg-icon.png" alt=""></div>
+				<div class="goods-content-desc">
+					<p class="">{{item.name}}</p>
+					<p class="">{{item.tip}}</p>
+				</div>
+			</li>
+		</ul>
+	</div> -->
+
+
+	<div class="weui-tab__bd">
+	    <div class="weui-tab__bd-item weui-tab__bd-item--active">
+	      <div class="weui-panel weui-panel_access">
+			  <div class="weui-panel__bd">
+			    <div href="javascript:void(0);" v-for="item in orderList" class="weui-media-box weui-media-box_appmsg">
+			      <div class="weui-media-box__hd">
+			        <img class="weui-media-box__thumb" src="../icon/bg-icon.png">
+			      </div>
+			      <div class="weui-media-box__bd clearfix" style="position: relative;">
+			        <div class="weui-media-box__title activeThemeTitle clearfix" style="color:rgba(0, 0, 0, 0.8)">
+			        	<b>{{item.name}}</b>
+			        </div>
+			        
+			        <div class="activeArea">{{item.tip}}</div>
+			        <div class="weui-media-box__desc weui-flex" style="justify-content: space-between;align-items: flex-end;">
+			        	<span class="price" style="position: relative"><input type="radio" name="iCheck">&nbsp;<span style="position: absolute;bottom: 0;">￥{{item.price}}</span></span>
+			        	<div class="p-setNum">
+                            <span class="btn-min" @click="btnMin(item.id)">-</span>
+                            <input type="tel" name="cpsl" v-model="goodsNum" maxlength="3">
+                            <span class="btn-add" @click="btnAdd(item.id)">+</span>
+                        </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	    </div>
+	</div>
+
+	<div class="botBar" style="width: 100%;position: fixed;bottom: 0;">
+	  	<div class="submitOrder weui-flex">
+	  	  	<div class="weui-flex__item" style="font-size: 14px;color:rgba(0,0,0,0.6)"><input type="radio" name="iCheck">&nbsp;全选</div>
+	  		<div class="weui-flex__item price" style="line-height: 49px">合计：￥315</div>
+	  	  	<div class="weui-flex__item textCenter subOrdBtn" id="payMethod" onclick="payMethod()">提交订单</div>
+	  	</div>
+	  </div>
+
+
+</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script src="../js/icheck.min.js"></script>
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+//单选框
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-orange',
+    radioClass: 'iradio_square-orange',
+    increaseArea: '20%' // optional
+  });
+});
+</script>	
+<script>
+	var list = ['南京福爱生物科技','上海上善高方','XXXX','尾田荣一郎','鸟山明'];
+
+	// 公共类函数 以后可抽取
+	function panelImg(){
+		var ant = $('.weui-media-box__bd').height()
+		var fullHeight = $(window).height();
+		var top_offset = $('.weui-tab__bd').offset()
+
+		hbHeight = fullHeight-top_offset.top;
+
+		$('.weui-tab__bd').height(hbHeight)
+		$('.weui-media-box__hd').height(ant)
+		$('.weui-media-box__hd').width(ant)
+
+	}
+
+
+
+	var fakeMsg = [
+		{	
+			name: '6盒装+包邮】敖东安神补脑液10支强脑补脑安神健忘失眠助眠药',
+			id:'xxa01',
+			price: '85.00',
+			status: '进行中',
+			area: '线上活动',
+			price: 32,
+			tip:'便携袋装240g高酶160+纯'
+		},
+		{
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			id:'xxa02',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 10,
+			tip:'便携袋装240g高酶160+纯'
+		},
+		{
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',			
+			id:'xxa03',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 5,
+			tip:'便携袋装240g高酶160+纯'
+		}
+	]	
+
+	function picker(obj,arr){
+		$(obj).picker({
+		  title: "请选择",
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: arr
+		    }
+		  ],
+		  onClose:function(){
+		  	$.alert(this.cols[0].value)	
+		  	/*轮子选择的value值 this.cols[0].value, 轮子选择的序号 this.cols[0].activeIndex 详情可console.log(this);*/
+		  }
+		})
+	}
+	
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			orderList: fakeMsg,
+			list: list,
+			active_bar:0,
+			goodsNum:1
+		},
+		mounted:function(){
+			// picker('#picker_1',list)
+
+			panelImg()		
+		},
+		methods:{
+			btnMin(id){
+				this.goodsNum--;
+				if(this.goodsNum <= 1){
+					this.goodsNum = 1;
+				}
+			},
+			btnAdd(id){
+				this.goodsNum++;
+			}
+		}
+	})
+</script>
+</body>
+</html>

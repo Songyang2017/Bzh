@@ -49,3 +49,7 @@ body {
 .hide {
   display: none;
 }
+.word-break {
+  word-wrap: break-word;
+  word-break: normal;
+}
