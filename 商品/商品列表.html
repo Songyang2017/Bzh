@@ -64,19 +64,6 @@
 	  </form>
 	  <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
 	</div>
-		
-	<!-- <div class="goodsItemList">
-		<ul class="goods-content">
-			<li class="weui-flex" v-for="item in orderList">
-				<div class="img"><img src="../icon/bg-icon.png" alt=""></div>
-				<div class="goods-content-desc">
-					<p class="">{{item.name}}</p>
-					<p class="">{{item.tip}}</p>
-				</div>
-			</li>
-		</ul>
-	</div> -->
-
 
 	<div class="weui-tab__bd">
 	    <div class="weui-tab__bd-item weui-tab__bd-item--active">
@@ -93,11 +80,11 @@
 			        
 			        <div class="activeArea">{{item.tip}}</div>
 			        <div class="weui-media-box__desc weui-flex" style="justify-content: space-between;align-items: flex-end;">
-			        	<span class="price" style="position: relative"><input type="radio" name="iCheck">&nbsp;<span style="position: absolute;bottom: 0;">￥{{item.price}}</span></span>
+			        	<span class="price" style="position: relative"><input type="checkbox" v-model='checkedNames' name="iCheck">&nbsp;<span style="position: absolute;bottom: 0;">￥{{item.price}}</span></span>
 			        	<div class="p-setNum">
-                            <span class="btn-min" @click="btnMin(item.id)">-</span>
-                            <input type="tel" name="cpsl" v-model="goodsNum" maxlength="3">
-                            <span class="btn-add" @click="btnAdd(item.id)">+</span>
+                            <span class="btn-min" @click="changeQuantity(item,-1)">-</span>
+                            <input type="tel" name="cpsl" v-model="item.quantity" maxlength="3">
+                            <span class="btn-add" @click="changeQuantity(item,+1)">+</span>
                         </div>
 			        </div>
 			      </div>
@@ -107,15 +94,17 @@
 	    </div>
 	</div>
 
+
+
 	<div class="botBar" style="width: 100%;position: fixed;bottom: 0;">
 	  	<div class="submitOrder weui-flex">
-	  	  	<div class="weui-flex__item" style="font-size: 14px;color:rgba(0,0,0,0.6)"><input type="radio" name="iCheck">&nbsp;全选</div>
-	  		<div class="weui-flex__item price" style="line-height: 49px">合计：￥315</div>
+	  	  	<div class="weui-flex__item" style="font-size: 14px;color:rgba(0,0,0,0.6)"><input type="checkbox" name="iCheck">&nbsp;全选</div>
+	  		<div class="weui-flex__item price" style="line-height: 49px">合计：{{goodsSum}}</div>
 	  	  	<div class="weui-flex__item textCenter subOrdBtn" id="payMethod" onclick="payMethod()">提交订单</div>
 	  	</div>
-	  </div>
+	</div>
 
-
+	
 </div>
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script src="../js/jquery-weui.min.js"></script>	
@@ -158,7 +147,8 @@ $(document).ready(function(){
 			status: '进行中',
 			area: '线上活动',
 			price: 32,
-			tip:'便携袋装240g高酶160+纯'
+			tip:'便携袋装240g高酶160+纯',
+			quantity:0
 		},
 		{
 			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
@@ -167,7 +157,8 @@ $(document).ready(function(){
 			status: '明天13:00开始',
 			area: '徐汇区',
 			price: 10,
-			tip:'便携袋装240g高酶160+纯'
+			tip:'便携袋装240g高酶160+纯',
+			quantity:0
 		},
 		{
 			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',			
@@ -176,7 +167,8 @@ $(document).ready(function(){
 			status: '明天13:00开始',
 			area: '徐汇区',
 			price: 5,
-			tip:'便携袋装240g高酶160+纯'
+			tip:'便携袋装240g高酶160+纯',
+			quantity:0
 		}
 	]	
 
@@ -203,7 +195,7 @@ $(document).ready(function(){
 			orderList: fakeMsg,
 			list: list,
 			active_bar:0,
-			goodsNum:1
+			checkedNames: []
 		},
 		mounted:function(){
 			// picker('#picker_1',list)
@@ -211,14 +203,20 @@ $(document).ready(function(){
 			panelImg()		
 		},
 		methods:{
-			btnMin(id){
-				this.goodsNum--;
-				if(this.goodsNum <= 1){
-					this.goodsNum = 1;
+			changeQuantity(items,n){
+				if(its.quantity <= 0){
+					items.quantity = 0;
 				}
-			},
-			btnAdd(id){
-				this.goodsNum++;
+				items.quantity = its.quantity + (n);
+			}
+		},
+		computed:{
+			goodsSum:function(){
+				var sum = 0;
+				this.orderList.forEach(function(v,i,a){
+					sum = sum + v.price * v.quantity
+				})
+				return sum;
 			}
 		}
 	})
