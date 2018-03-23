@@ -665,3 +665,47 @@ body {
 .active-detail-desc-p1 > .hosterMsg > .weui-media-box__bd .weui-media-box__desc {
   font-size: 13px;
 }
+.p-setNum {
+  display: block;
+  float: right;
+  width: 80px;
+  height: 24px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #E4E4E4;
+  vertical-align: middle;
+}
+.p-setNum > span {
+  display: inline-block;
+  width: 24px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0.7;
+  float: left;
+  color: #000;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.p-setNum > input {
+  box-sizing: border-box;
+  width: 30px;
+  height: 22px;
+  border: none;
+  outline: none;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  font-family: simhei;
+  float: left;
+}
+.p-setNum .disabled {
+  color: #999999;
+}
+.icheckbox_square-orange,
+.iradio_square-orange {
+  cursor: inherit;
+  -webkit-tap-highlight-color: transparent;
+}

@@ -9,44 +9,6 @@
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../css/orange.css">
-<style>
-.p-setNum {
-    display: block;
-    float: right;
-    width: 80px;
-    height: 24px;
-    overflow: hidden;
-    border-radius: 2px;
-    border: 1px solid #E4E4E4;
-    vertical-align: middle;
-}
-.p-setNum span {
-    display: inline-block;
-    cursor: pointer;
-    width: 24px;
-    height: 22px;
-    line-height: 22px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    opacity: 0.7;
-    float: left;
-    color: #000;
-    -webkit-user-select: none;
-}
-.p-setNum input {
-    box-sizing: border-box;
-    width: 30px;
-    height: 22px;
-    border: none;
-    outline: none;
-    text-align: center;
-    line-height: 24px;
-    font-size: 12px;
-    font-family: simhei;
-    float: left;
-}
-</style>
 </head>
 <body>
 <div class="weui-tab" id="app" v-cloak>
@@ -80,11 +42,11 @@
 			        
 			        <div class="activeArea">{{item.tip}}</div>
 			        <div class="weui-media-box__desc weui-flex" style="justify-content: space-between;align-items: flex-end;">
-			        	<span class="price" style="position: relative"><input type="checkbox" v-model='checkedNames' name="iCheck">&nbsp;<span style="position: absolute;bottom: 0;">￥{{item.price}}</span></span>
+			        	<span class="price" style="position: relative"><input type="checkbox" name="iCheck" :id="item.id">&nbsp;<span style="position: absolute;bottom: 0;">{{item.price|toFixed}}</span></span>
 			        	<div class="p-setNum">
-                            <span class="btn-min" @click="changeQuantity(item,-1)">-</span>
-                            <input type="tel" name="cpsl" v-model="item.quantity" maxlength="3">
-                            <span class="btn-add" @click="changeQuantity(item,+1)">+</span>
+                            <span class="btn-min" :class="{disabled : item.quantity=='1'}" @click="changeQuantity(item,-1)">-</span>
+                            <input type="tel" name="cpsl" v-model.trim="item.quantity" @change=changeValue(item) maxlength="3">
+                            <span class="btn-add" :class="{disabled : item.quantity==item.inventory}" @click="changeQuantity(item,1)">+</span>
                         </div>
 			        </div>
 			      </div>
@@ -94,12 +56,10 @@
 	    </div>
 	</div>
 
-
-
 	<div class="botBar" style="width: 100%;position: fixed;bottom: 0;">
 	  	<div class="submitOrder weui-flex">
-	  	  	<div class="weui-flex__item" style="font-size: 14px;color:rgba(0,0,0,0.6)"><input type="checkbox" name="iCheck">&nbsp;全选</div>
-	  		<div class="weui-flex__item price" style="line-height: 49px">合计：{{goodsSum}}</div>
+	  	  	<div class="weui-flex__item" style="font-size: 14px;color:rgba(0,0,0,0.6)"><input id="text_box" type="checkbox" name="iCheck">&nbsp;全选</div>
+	  		<div class="weui-flex__item price" style="line-height: 49px">合计：￥{{countSum}}</div>
 	  	  	<div class="weui-flex__item textCenter subOrdBtn" id="payMethod" onclick="payMethod()">提交订单</div>
 	  	</div>
 	</div>
@@ -118,10 +78,19 @@ $(document).ready(function(){
     radioClass: 'iradio_square-orange',
     increaseArea: '20%' // optional
   });
+
+// 全选、取消全选
+  $('#text_box').on('ifChecked', function(event){
+		$('input').iCheck('check');
+	});
+	$('#text_box').on('ifUnchecked', function(event){
+		$('input').iCheck('uncheck');
+	});
 });
 </script>	
 <script>
 	var list = ['南京福爱生物科技','上海上善高方','XXXX','尾田荣一郎','鸟山明'];
+	var orange = document.getElementsByClassName('icheckbox_square-orange');
 
 	// 公共类函数 以后可抽取
 	function panelImg(){
@@ -139,38 +108,42 @@ $(document).ready(function(){
 
 
 
-	var fakeMsg = [
+	var goodsMsg = [
 		{	
 			name: '6盒装+包邮】敖东安神补脑液10支强脑补脑安神健忘失眠助眠药',
 			id:'xxa01',
-			price: '85.00',
-			status: '进行中',
-			area: '线上活动',
 			price: 32,
 			tip:'便携袋装240g高酶160+纯',
-			quantity:0
+			quantity:1,
+			inventory:20,	//库存数量
+			oldPrice:40
 		},
 		{
 			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
 			id:'xxa02',
-			price: '0.00',
-			status: '明天13:00开始',
-			area: '徐汇区',
 			price: 10,
 			tip:'便携袋装240g高酶160+纯',
-			quantity:0
+			quantity:1,
+			inventory:15,
+			oldPrice:15
 		},
 		{
 			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',			
 			id:'xxa03',
-			price: '0.00',
-			status: '明天13:00开始',
-			area: '徐汇区',
 			price: 5,
 			tip:'便携袋装240g高酶160+纯',
-			quantity:0
+			quantity:1,
+			inventory:3,
+			oldPrice:8
 		}
 	]	
+
+	goodsMsg.forEach(function(v,i,a){
+		v.checked = false;
+	})
+
+
+	var costMsg = [];
 
 	function picker(obj,arr){
 		$(obj).picker({
@@ -192,10 +165,9 @@ $(document).ready(function(){
 	var app = new Vue({
 		el:'#app',
 		data:{
-			orderList: fakeMsg,
+			orderList: goodsMsg,
 			list: list,
-			active_bar:0,
-			checkedNames: []
+			countSum:0
 		},
 		mounted:function(){
 			// picker('#picker_1',list)
@@ -204,21 +176,103 @@ $(document).ready(function(){
 		},
 		methods:{
 			changeQuantity(items,n){
-				if(its.quantity <= 0){
-					items.quantity = 0;
+				if(n > 0){
+					if(items.quantity>=items.inventory){
+						$.alert('库存不够啦！')
+						items.quantity=items.inventory
+					}else{
+						items.quantity++;
+						check(items,items.id,false,true)
+					}
+				}else{
+					if(items.quantity <= 1){
+						items.quantity = 1;
+					}else{
+						items.quantity--;
+						check(items,items.id,false,true)
+					}
 				}
-				items.quantity = its.quantity + (n);
-			}
+			},
+			changeValue(items){
+				if(items.quantity>=items.inventory){
+					$.alert('库存不够啦！')
+					items.quantity=items.inventory
+				}else if(items.quantity <= 1){
+					items.quantity = 1;
+				}
+				check(items,items.id,false,true)
+			},
 		},
-		computed:{
-			goodsSum:function(){
-				var sum = 0;
-				this.orderList.forEach(function(v,i,a){
-					sum = sum + v.price * v.quantity
-				})
-				return sum;
+		filters:{
+			toFixed:function(value){
+				if(!value){return ''}
+				return '￥'+value.toFixed(2);
 			}
 		}
+	})
+
+
+//	勾选事件 obj 勾住的商品对象；id勾住的商品id；flag表示函数的触发机制；true表示直接在页面上进行勾住操作触发执行，false为使用计数器时触发执行；key为count()所需函数
+	function check(obj,id,flag,key){
+		if(!flag){
+			var checked = $('#'+id).parent().hasClass('checked') //选中为true, 否则为false
+			if(checked){
+				obj.checked = true;
+				count(key)
+			}else{
+				obj.checked = false;
+			}
+			console.log('success!',checked);
+		}else{
+			if(key){
+				obj.checked = true;
+			}else{
+				obj.checked = false;
+			}
+			count(key)
+		}
+	}
+
+	var sum = 0;
+//  结算 key表示结算是加还是减。比如勾住是加操作，为1，取消为减操作为-1
+	function count(key){
+		if(key){
+			app.orderList.forEach(function(v,i,a){
+				if(v.checked){
+					sum += v.quantity * v.price;
+				}
+			})
+		} else {
+			// app.orderList.forEach(function(v,i,a){
+			// 	if(v.checked == false){
+			// 		sum -= app.countSum;
+			// 	}
+			// })
+			sum -= app.countSum;
+		}
+		app.countSum = sum
+	}
+ 
+//	选中复选框事件check 未来可将check与uncheck封装为一个函数
+	$('input').on('ifChecked',function(e){
+		var target=e.target||e.srcElement;
+		app.orderList.forEach(function(v,i,a){
+			if(v.id == target.id){
+				check(v,target.id,true,true)
+				console.log('checked');
+			}
+		})
+	})
+
+//	取消复选框事件check
+	$('input').on('ifUnchecked',function(e){
+		var target=e.target||e.srcElement;
+		app.orderList.forEach(function(v,i,a){
+			if(v.id == target.id){
+				check(v,target.id,true,false)
+				console.log('unchecked');
+			}
+		})
 	})
 </script>
 </body>
