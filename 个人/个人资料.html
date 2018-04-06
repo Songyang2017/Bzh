@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>个人资料</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<style>
+	.weui-panel:after, .weui-panel:before{
+		content:none;
+	}
+</style>
+</head>
+<body>
+	<div id="app" class="wallet">
+		
+		<div class="weui-panel weui-panel_access">
+		  <div class="weui-panel__bd">
+		    <div class="weui-media-box weui-media-box_appmsg">
+		      <div class="weui-media-box__hd" style="margin-right: 12px;">
+		        <img class="weui-media-box__thumb" src="../icon/bg-icon.png">
+		      </div>
+		      <div class="weui-media-box__bd">
+		        <h4 class="weui-media-box__title">丽丽</h4>
+		        <p class="weui-media-box__desc">sdf345</p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+
+		<div class="weui-cells">
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>性别</p>
+            </div>
+            <div class="weui-cell__ft">请选择</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>出生日期</p>
+            </div>
+            <div class="weui-cell__ft">请选择</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>微信二维码</p>
+            </div>
+            <div class="weui-cell__ft">请上传</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>手机号</p>
+            </div>
+            <div class="weui-cell__ft">13764628433</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>邀请码&emsp;52338</p>
+            </div>
+            <div class="weui-cell__ft">长按复制</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>收货地址</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>健康引导师</p>
+            </div>
+            <div class="weui-cell__ft">您还不是高级健康引导师</div>
+          </a>
+        </div>
+	</div>
+
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			pic:'../icon/bg-icon.png'
+		}
+	}) 
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>健康咨讯</title>
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div id="app" v-cloak>
+		<div class="article_tab">
+			<div :class="{swiperSlideActive:flag == 1}" @click="sw(1)">推荐</div>
+			<div :class="{swiperSlideActive:flag == 2}" @click="sw(2)">营养</div>
+			<div :class="{swiperSlideActive:flag == 3}" @click="sw(3)">运动</div>
+			<div :class="{swiperSlideActive:flag == 4}" @click="sw(4)">调理</div>
+			<div :class="{swiperSlideActive:flag == 5}" @click="sw(5)">旅游</div>
+		</div>
+		<div style="height: 52px;"></div>
+		
+		<ul class="artcile-content">
+			<li v-for="item in msgList">
+				<div class="artcile-pic" v-bind:style="{backgroundImage: 'url('+item.pic+')'}"></div>
+				<div class="artcile-title">
+					<p>{{item.title}}</p>
+					<p>{{item.content}}</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+//  localstorage记录用户切换的值
+	if(!window.localStorage){
+		alert("浏览器不支持localstorage");
+	}else{
+		
+		var storage = window.localStorage;
+		
+		// storage['tabKey'] = 1;
+		if(!storage['tabKey']){
+			storage['tabKey'] = 1;
+		}
+	}
+
+</script>	
+<script>
+	var fakeMsg = [
+		{
+			pic:'https://wx2.sinaimg.cn/orj360/006BdgoPly1fm04tu72v5j30u00u0ti1.jpg',
+			title:'这是推荐：复仇者联盟',
+			content:'画面中初代复仇者势必会有一部分人退出，很难想象一个没有索尔、钢铁侠、美国队长...的复仇者联盟，最后的狂欢，且行 且珍惜，画面中初代复仇者势必会有一部分人退出，很难想象一个没有索尔、钢铁侠、美国队长...的复仇者联盟，最后的狂欢，且行 且珍惜',
+			status:'0'
+		},
+		{
+			pic:'https://wx1.sinaimg.cn/orj360/6b7c5633ly1fprabzu00kj20hs0qon0w.jpg',
+			title:'这是推荐：复仇者联盟',
+			content:'画面中初代复仇者势必会有一部分人退出，很难想象一个没有索尔、钢铁侠、美国队长...的复仇者联盟，最后的狂欢，且行 且珍惜',
+			status:'0'
+		},
+		{
+			pic:'https://wx3.sinaimg.cn/orj360/6b7c5633ly1fprac0d7faj20dq0lo7vu.jpg',
+			title:'这是营养：罗素兄弟把Facebook的背景图换成了饭制版',
+			content:'哈哈哈哈哈哈哈哈哈哈',
+			status:'1'
+		},
+		{
+			pic:'../icon/bg-icon.png',
+			title:'这是运动',
+			content:'哈哈哈哈哈哈哈哈哈哈',
+			status:'2'
+		},
+		{
+			pic:'../icon/bg-icon.png',
+			title:'这是调理',
+			content:'哈哈哈哈哈哈哈哈哈哈',
+			status:'3'
+		},
+		{
+			pic:'../icon/bg-icon.png',
+			title:'这是旅游',
+			content:'哈哈哈哈哈哈哈哈哈哈',
+			status:'4'
+		}
+	] 
+	var list_1 = [];
+	var list_2 = [];
+	var list_3 = [];
+	var list_4 = [];
+	var list_5 = [];
+
+	for(var i=0;i<fakeMsg.length;i++){
+		if(fakeMsg[i].status == '0'){
+			list_1.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '1'){
+			list_2.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '2'){
+			list_3.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '3'){
+			list_4.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '4'){
+			list_5.push(fakeMsg[i])
+		}
+	}
+
+
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			flag:storage['tabKey'],
+			msgList:[]
+		},
+		mounted:function(){
+			this.sw(this.flag)
+		},
+		methods:{
+			sw:function(i){
+				this.flag = i;
+				storage['tabKey'] = i;
+				this.msgList = eval('list_'+i);
+				console.log(this.msgList);
+			}
+		}
+	})
+</script>
+</body>
+</html>

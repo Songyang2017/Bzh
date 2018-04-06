@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>健康引导师</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div id="app" class="wallet">
+		 <div class="weui-cells" style="margin-bottom: 10px">
+			  <!-- <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>我的等级&emsp;初级</p>
+          </div>
+          <div class="weui-cell__ft">升级</div>
+        </a> -->
+        <a class="weui-cell weui-cell_access" style="padding:10px" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>我的等级&emsp;您还不是健康引导师</p>
+          </div>
+          <div class="weui-cell__ft">立刻申请</div>
+        </a>
+     </div>
+
+     <div class="weui-cells">
+        <div class="weui-cell" style="padding:10px">
+          <div class="weui-cell__bd">
+            <p>健康引导师简介</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </div>
+        <div class="content-int">
+          <p class="title">什么是健康引导师</p>
+          <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+          <p class="title">申请条件</p>
+          <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+          <p class="title">权利</p>
+          <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+          <p class="title">义务</p>
+          <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+        </div>
+     </div>
+	</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+  var msg={
+
+    degree:'lv1',
+  }
+  if(msg.degree){
+    if(msg.degree=='lv1'){
+      msg.tip='初级'
+    }
+  }
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			msg:msg
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>抢优惠券</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div id="app" class="discount-body" v-cloak>
+
+		<ul class="artcile-content">
+			<li v-for="item in fakeMsg">
+				<div class="artcile-pic" style="background-image: url(../icon/bg-icon.png);"><div>￥{{item.discount}}</div></div>
+				<div class="artcile-title">
+					<p>{{item.discountTitle}}</p>
+					<p>{{item.validityDate}}</p>
+					<p>{{item.desc}}</p>
+					<p>已抢{{item.taken}}&emsp;查看人数{{item.view}}</p>
+				</div>
+				<div class="mediumBtn fullPayBtn getDiscount_btn" v-if="item.status=='T'" style="width: auto">领 取</div>
+			</li>
+		</ul>
+		
+	</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>	
+<script>
+	var fakeMsg = [
+		{
+			discount: 50,
+			discountType:'全品类',
+			discountTitle:'百智汇全品类券',
+			validityDate:'2018/03/31-2018/04/15',
+			desc:'满399使用',
+			taken:500,
+			view:2000,
+			status:'T'
+		},{
+			discount: 50,
+			discountType:'全品类',
+			discountTitle:'百智汇全品类券',
+			validityDate:'',
+			desc:'每天可领取',
+			taken:500,
+			view:2000,
+			status:'T'
+		},{
+			discount: 20,
+			discountType:'全品类',
+			discountTitle:'百智汇全品类券',
+			validityDate:'2018/03/31-2018/04/15',
+			desc:'满199使用',
+			taken:500,
+			view:2000,
+			status:'T'
+		},{
+			discount: 50,
+			discountType:'全品类',
+			discountTitle:'百智汇全品类券',
+			validityDate:'',
+			desc:'每天可领取',
+			taken:500,
+			view:2000,
+			status:'F'
+		},
+	]
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			fakeMsg:fakeMsg
+		}
+	})
+</script>
+</body>
+</html>

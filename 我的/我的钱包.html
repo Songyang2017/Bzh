@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>我的钱包</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div id="app" class="wallet">
+		<div class="weui-cells">
+			
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>账户余额</p>
+            </div>
+            <div class="weui-cell__ft">￥8</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>优惠券</p>
+            </div>
+            <div class="weui-cell__ft">0张</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>积分</p>
+            </div>
+            <div class="weui-cell__ft">0</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>红包</p>
+            </div>
+            <div class="weui-cell__ft">0</div>
+          </a>
+        </div>
+	</div>
+
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			pic:'../icon/bg-icon.png'
+		}
+	}) 
+
+
+</script>
+</body>
+</html>

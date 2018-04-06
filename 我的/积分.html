@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<title>积分</title>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="jf-header">
+        <div class="bg" style="background-image: url(../icon/jf-yu-mycount.png);"></div><span>账户{{nameId}}&nbsp;{{accumulatePoints}}</span>
+    </div>
+    <!--收支-->
+    <div class="jf-content">
+        <span class="jf-span02">收支明细</span>
+        <ul class="jf-box">
+            <li @click="takeAll">
+                <span>{{textIn}}</span><div class="rotate" :class="{rotate2:flag}" style="background-image: url(../icon/jf-yu-mycount.png)"></div>
+            </li>
+            <li class="li-2" v-show="flag" @click="takeIn"><span>收入</span></li>
+            <li class="li-3" v-show="flag" @click="takeOut"><span>支出</span></li>
+        </ul>
+    </div>
+    <!--内容-->
+    <ul>
+        <li class="jf-03 jf-content" v-for="x in msg">
+            <div class="jf-03-01">
+                <span>{{x.nodeText}}</span><br>
+                <span>{{x.nodeDate}}</span>
+            </div>
+            <span class="jf-03-02">{{x.nodeValue}}分</span>
+        </li>
+    </ul>
+</div>
+
+
+</div>
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+    function dateDescending(obj){
+        obj.sort(function(a,b){
+            return Date.parse(b.nodeDate)-Date.parse(a.nodeDate);
+        })
+    }
+
+
+    var fakemsg01=[{
+        nodeText:"邀请新用户奖励",
+        nodeDate:"2017-05-02",
+        nodeValue:"+3"
+    },
+    {
+        nodeText:"邀请新用户奖励",
+        nodeDate:"2017-05-08",
+        nodeValue:"+2"
+    },{
+            nodeText:"邀请新用户奖励",
+            nodeDate:"2017-12-04",
+            nodeValue:"+2"
+        }];
+var fakemsg02=[{
+    nodeText:"兑换***礼品",
+    nodeDate:"2017-04-29",
+    nodeValue:"-1"
+},{
+    nodeText:"兑换***礼品",
+    nodeDate:"2017-07-12",
+    nodeValue:"-2"
+}]
+    var fakemsg=fakemsg01.concat(fakemsg02)
+    var app=new Vue({
+        el:"#app",
+        mounted:function(){
+            dateDescending(this.msg);
+        },
+        data:{
+            nameId:"积分",
+            accumulatePoints:12,
+            flag:false,
+            textIn:"全部",
+            msg:fakemsg,
+            btnText:"积分",
+            btnFlag:true
+        },
+        methods:{
+            takeAll:function(){
+                this.flag=!this.flag;
+                if(this.textIn=="全部"){
+                    this.msg=fakemsg;
+                }
+                dateDescending(this.msg);
+            },
+            takeIn:function(){
+                this.flag=!this.flag;
+                this.textIn="收入";
+                this.msg=fakemsg01;
+                dateDescending(this.msg);
+            },
+            takeOut:function(){
+                this.flag=!this.flag;
+                this.textIn="支出";
+                this.msg=fakemsg02;
+                dateDescending(this.msg);
+            }
+        },
+        watch:{
+            flag:function(val){
+                if(val==true){
+                    this.textIn="全部"
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

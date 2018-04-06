@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>收支明细</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<div id="app" class="wallet" v-cloak>
+	<div class="weui-cells">
+      <a class="weui-cell weui-cell_access check-list" href="javascript:;" style="padding: 10px" v-for="item in msgList">
+        <div class="weui-cell__bd">
+          <p>{{item.costName}}</p>
+          <p>{{item.costType}}</p>
+          <p>{{item.costDate}}</p>
+        </div>
+        <div class="weui-cell__ft"><div class="check-list-sum">￥{{item.costSum}}</div></div>
+      </a>
+    </div>
+</div>
+
+
+</body>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+	var fakeMsg = [
+		{
+			costName:'升为健康引导师',
+			costType:'健康引导师升级奖励',
+			costDate:'2018-03-01 12:37',
+			costSum:'+7'
+		},
+		{
+			costName:'美国进口维生素100',
+			costType:'消费返现',
+			costDate:'2018-05-01 10:37',
+			costSum:'+2'
+		}
+	]
+	var app = new Vue({
+		el:"#app",
+		data:{
+			msgList:fakeMsg
+		}
+	}) 
+</script>
+</body>
+</html>

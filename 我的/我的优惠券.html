@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>我的优惠券</title>
+<link rel="stylesheet" href="..//css/weui.min.css">
+<link rel="stylesheet" href="..//css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">	
+</head>
+<body>
+<div id="app" v-cloak>
+	<div class="article_tab">
+		<div :class="{swiperSlideActive:flag == 1}" @click="sw(1)">未使用</div>
+		<div :class="{swiperSlideActive:flag == 2}" @click="sw(2)">已使用</div>
+		<div :class="{swiperSlideActive:flag == 3}" @click="sw(3)">已过期</div>
+	</div>
+	
+	<div style="height: 52px;"></div>
+	
+	<div class="wallet red-bag-tip">
+		<div class="weui-cells">
+		  <a class="weui-cell weui-cell_access" href="javascript:;" style="padding: 10px">
+	        <div class="weui-cell__hd"><img src="../icon/bg-icon.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+	        <div class="weui-cell__bd">
+	          <p>您有8张带领的优惠券哦</p>
+	        </div>
+	        <div class="weui-cell__ft"></div>
+	      </a>
+		</div>
+	</div>
+
+	<ul class="artcile-content">
+		<li v-for="item in fakeMsg">
+			<div class="artcile-pic" style="background-image: url(../icon/bg-icon.png);"><div>￥{{item.discount}}</div></div>
+			<div class="artcile-title" style="justify-content: space-around;">
+				<p>{{item.discountType}}{{item.discountTitle}}</p>
+				<p>{{item.validityDate}}</p>
+			</div>
+			<div class="mediumBtn fullPayBtn getDiscount_btn" v-if="item.status=='T'" style="width: auto">立即使用</div>
+		</li>
+	</ul>
+	
+	<div style="height: 50px;"></div>
+
+	<div class="red-bag-footer">
+		<a href="javascript:void(0);">去抢红包</a>
+		<a href="javascript:void(0);">去抢优惠券</a>
+	</div>
+</div>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+//  localstorage记录用户切换的值
+	if(!window.localStorage){
+		alert("浏览器不支持localstorage");
+	}else{
+		
+		var storage = window.localStorage;
+		
+		// storage['tabKey'] = 1;
+		if(!storage['tabKey']){
+			storage['tabKey'] = 1;
+		}
+	}
+
+</script>	
+<script>
+	var fakeMsg = [
+		{
+			discount: 50,
+			discountType:'全品类',
+			discountTitle:'百智汇平台',
+			validityDate:'2018/03/31-2018/04/15',
+			status:'T'
+		},{
+			discount: 50,
+			discountType:'店铺类',
+			discountTitle:'限购[金益化妆品专营店]',
+			validityDate:'2018/03/31-2018/04/15',
+			status:'T'
+		},{
+			discount: 20,
+			discountType:'全品类',
+			discountTitle:'百智汇全品类券',
+			validityDate:'2018/03/31-2018/04/15',
+			status:'T'
+		},{
+			discount: 50,
+			discountType:'全品类',
+			discountTitle:'百智汇平台',
+			validityDate:'2018/03/31-2018/04/15',
+			status:'F'
+		},
+	] 
+	var list_1 = [];
+	var list_2 = [];
+	var list_3 = [];
+	var list_4 = [];
+	var list_5 = [];
+
+	for(var i=0;i<fakeMsg.length;i++){
+		if(fakeMsg[i].status == '0'){
+			list_1.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '1'){
+			list_2.push(fakeMsg[i])
+		}else if(fakeMsg[i].status == '2'){
+			list_3.push(fakeMsg[i])
+		}
+	}
+
+
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			flag:storage['tabKey'],
+			msgList:[]
+		},
+		mounted:function(){
+			this.sw(this.flag)
+		},
+		methods:{
+			sw:function(i){
+				this.flag = i;
+				storage['tabKey'] = i;
+				this.msgList = eval('list_'+i);
+				console.log(this.msgList);
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>我的订单</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<div class="weui-tab" id="app" v-cloak>
+  <div class="weui-navbar">
+    <a class="weui-navbar__item" :class="{'weui-bar__item--on': activeTitle === 0}" @click="active(0)">
+      全部
+    </a>
+    <a class="weui-navbar__item" :class="{'weui-bar__item--on': activeTitle === 1}" @click="active(1)">
+      待付款
+    </a>
+    <a class="weui-navbar__item" :class="{'weui-bar__item--on': activeTitle === 2}" @click="active(2)">
+      待发货
+    </a>
+    <a class="weui-navbar__item" :class="{'weui-bar__item--on': activeTitle === 3}" @click="active(3)">
+      待收货
+    </a>
+  </div>
+  <div class="weui-tab__bd">
+    <div class="weui-tab__bd-item weui-tab__bd-item--active">
+      <div class="weui-panel weui-panel_access" v-for="item in goodsList">
+		  <div class="weui-panel__hd">{{item.title}} <span class="fr status_alive" v-html="item.status"></span></div>
+		  <div class="weui-panel__bd">
+		    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+		      <div class="weui-media-box__hd">
+		        <img class="weui-media-box__thumb" src="https://finance.gucheng.com/UploadFiles_7830/201412/2014120815055793.jpg">
+		      </div>
+		      <div class="weui-media-box__bd clearfix" style="position: relative;">
+		        <h4 class="weui-media-box__title"><span>{{item.name}}</span><span class="price fr"><b>￥{{item.price}}</b></span></h4>
+		        <span class="createDate">{{item.createDate}}</span>
+		        <div class="weui-media-box__desc fr" style="margin-top: 20px" v-if="item.status === '待支付'">
+					<div><span class="smallBtn cancle">取消</span>&emsp;<span class="smallBtn pay">支付</span></div>
+		        </div>
+		        <div class="weui-media-box__desc fr" v-else style="margin-top: 20px;visibility: hidden">
+		        	<span class="smallBtn cancle">取消</span>&emsp;<span class="smallBtn pay">支付</span>
+		        </div>
+		      </div>
+		    </a>
+		  </div>
+		</div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+	var msg_0 = [
+		{
+			title: 'XXX医疗器械专型',
+			name: '液体营养剂',
+			price: '85.00',
+			status: '待支付'
+		},
+		{
+			title: '益丰大药房',
+			name: '健康养生专家讲堂',
+			price: '85.00',
+			status: '待发货',
+			createDate: '2018-03-01'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待支付'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待支付'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待支付'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待收货'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待收货'
+		},
+		{
+			title: '益丰大药房',
+			name: '养生堂维生素',
+			price: '0.00',
+			status: '待发货'
+		}
+	]
+	var msg_1 = [], msg_2 = [], msg_3 = []; //全部,待付款,待发货,待收货
+
+	msg_0.forEach(function(v,i,a){
+		if(v.status === '待支付'){
+			msg_1.push(v)
+		}else if(v.status === '待发货'){
+			msg_2.push(v)
+		}else if(v.status === '待收货'){
+			msg_3.push(v)
+		}
+	})
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			goodsList: msg_0,
+			activeTitle: 0
+		},
+		methods:{
+			active:function(i){
+				this.activeTitle = i;
+				if(i == 0){
+					this.goodsList = msg_0
+				}else if(i == 1){
+					this.goodsList = msg_1
+				}else if(i == 2){
+					this.goodsList = msg_2
+				}else if(i == 3){
+					this.goodsList = msg_3
+				}
+			}
+		}
+	})
+</script>
+</body>
+</html>

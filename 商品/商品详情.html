@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>商品详情页</title>
+<link rel="stylesheet" href="..//css/weui.min.css">
+<link rel="stylesheet" href="..//css/jquery-weui.min.css">
+<link rel="stylesheet" type="text/css" href="http://static.jsk365.com/swiper/4.0.7/swiper.min.css">
+<link rel="stylesheet" href="..//css/base.css">
+<link rel="stylesheet" href="..//css/index.css">
+<style>
+	.swiper-container{
+		width: 100%;
+		font-size: 0;
+		height: 50%;
+	}  
+	.swiper-slide>img{
+		width: 100%;
+	}
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+	<!-- 轮播图展示 -->
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide" v-for="(item,index) in activeMsg.pic"><img :src="item" alt="">{{index}}</div>
+	    </div>
+	    <!-- 如果需要分页器 -->
+	    <div class="swiper-pagination"></div>
+	</div>
+	
+	<div class="weui-cells active-detail-desc-p1" style="margin-bottom: 10px;">
+	  <div class="weui-panel__bd title goods-title-name">
+	    <div class="weui-media-box weui-media-box_appmsg">
+	      <div class="weui-media-box__bd">
+	        <h4 class="weui-media-box__title">{{activeMsg.name}}</h4>
+	        <p class="goods-detail-text"><span class="goods-detail-newPrice">￥{{activeMsg.newPrice}}</span><span class="goods-detail-oldPrice">￥{{activeMsg.oldPrice}}</span></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- 商品详情展示图 -->
+	<div class="goods-detail-image-list">
+		<div v-for="x in imgList">
+			<img :src="x" alt="">
+		</div>
+	</div>
+	
+
+	<div style="height: 60px;background-color: transparent;"></div>
+	<div class="shopping-footer-cart">
+        <div class="cart_md">
+            <ul>
+                <li>
+                    <div id="kefu">
+                        <img src="../icon/bg-icon.png">
+                        <span>收藏</span>
+                    </div>
+                </li>
+                <span class="horz">|</span>
+                <li>
+                    <a href="javascript:void(0);" id="userCart" style="position:relative">
+                        <img src="../icon/bg-icon.png" alt="">
+                        <span>购物车</span>
+                        <span id="cartCount" style="">3</span>
+                    </a>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="go_buy" id="soonBuy">立即购买</a>
+            <a href="javascript:void(0);" class="add_cart" id="addCart">加入购物车</a>
+            <a href="javascript:void(0);" class="sale_out">售罄/下架</a>
+        </div>
+    </div>
+
+
+</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script type="text/javascript" src="http://static.jsk365.com/swiper/4.0.7/swiper.min.js"></script>
+<script>
+	var picPath = '../icon/bg-icon.png';
+	activeMsg = {
+		pic:{
+			p1:picPath,
+			p2:picPath,
+			p3:picPath,
+		},
+		name:'六口味切块(1磅) - 栗蓉暗香、心语心愿、松仁淡奶、芒果慕斯、卡布其诺、黑白巧克力慕斯',
+		newPrice:198,
+		oldPrice:256,
+		// date:'4月12日08:00至4月12日18:00',
+		// location:'上海闵行区希尔顿酒店12层304',
+		// desc:'已报名134人/不限制名额',
+		// price:'0 - 500',
+		// hosterMsg:{
+		// 	name:'PTP Internatial领思国际',
+		// 	pic:picPath,
+		// 	desc:'上海领思商务咨询有限公司成立于2008年，总部位于香港，是国内领先的B2B商业性会议策划、组织及实施机构，我们致力于为全球商业领袖、职业精英、学术领导者搭建知识与经验分享、沟通交流的平台，以促进知识、经验和理念的传播。我们通过各种平台（商业性会议、培训、沙龙、研讨会、参观、项目对接等）汇聚产品（服务）提供商和采购商，为他们创造商业机遇，实现业务增长。自从成立以来，我们已举办过上百场国际性峰会，活动涉及影响全球经济发展的重点行业，包括：跨境电商行业、虚拟现实、医疗旅游、在线教育、金融行业等，积累了丰富的项目策划、组织，营销、媒体合作、现场管理经验，服务客户覆盖很多蓬勃的新型企业和大型国企，与各行业协会、媒体保持着良好合作关系。在2015年，领思国际联合中国跨境电商行业应用联盟及全球跨境电商联盟共同发起成立了-领思会跨境电商俱乐部（eCommerce Council ) ，并得到世界20多个国家相关电商行业协会的支持。我们将通过领思会的平台举办一系列跨境电商活动与沙龙等，期待大家的加入！'
+		// },
+		// activeContent:'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+	}
+	imgList={
+		p1: picPath,
+		p2: picPath,
+		p3: picPath,
+		p4: picPath,
+		p4: picPath,
+		p5: picPath,
+	}
+
+
+
+
+//	轮播图swiper
+	function swiperInit(){
+		var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'horizontal',
+			    loop: false,
+			    freeMode:false,
+			    pagination: {
+			    	el:'.swiper-pagination',
+			    	clickable:true
+			    },
+			})      
+	}
+
+//	Vue部分
+	var app = new Vue({
+		el:'#app',
+		data:{
+			activeMsg:activeMsg,
+			imgListL:imgList
+		},
+		mounted:function(){
+			swiperInit()
+		}
+	})
+</script>	
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>历史活动</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+  	<div class="weui-tab" id="app" v-cloak>
+		<div class="weui-search-bar" style="background-color: #fff;padding:10px 40px" id="searchBar">
+		  <form class="weui-search-bar__form">
+		    <div class="weui-search-bar__box" style="background: #f4f4f4;">
+		      <i class="weui-icon-search"></i>
+		      <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+		      <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+		    </div>
+		    <label class="weui-search-bar__label" style="background:#f4f4f4" id="searchText">
+		      <i class="weui-icon-search"></i>
+		      <span>搜索</span>
+		    </label>
+		  </form>
+		  <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+		  <img width="12" height="20.5" class="vertically" style="left: 8px;" src="../icon/返回.png" alt="">
+		  <img width="18" class="vertically" style="right: 8px;" src="../icon/我的活动.png" alt="">
+		</div>
+ 		
+		<div>
+			<div class="weui-flex chooseBar">
+			  <div class="weui-flex__item textCenter"  @click="active_bar = 1" :class="{bar_active: active_bar === 1}" id="picker_1">预防检测</div><span>|</span>
+			  <div class="weui-flex__item textCenter"  @click="active_bar = 2" :class="{bar_active: active_bar === 2}" id="picker_2">不限时间</div>
+			</div>
+		</div>
+
+		<div class="weui-tab__bd">
+		    <div class="weui-tab__bd-item weui-tab__bd-item--active">
+		      <div class="weui-panel weui-panel_access">
+				  <div class="weui-panel__bd">
+				    <a href="javascript:void(0);" v-for="item in orderList" class="weui-media-box weui-media-box_appmsg">
+				      <div class="weui-media-box__hd">
+				        <img class="weui-media-box__thumb" src="https://finance.gucheng.com/UploadFiles_7830/201412/2014120815055793.jpg">
+				      </div>
+				      <div class="weui-media-box__bd clearfix" style="position: relative;">
+				        <h4 class="weui-media-box__title activeThemeTitle" style="color:rgba(0, 0, 0, 0.8)"><span><b>{{item.name}}</b></span></h4>
+				        <span class="activeStatus">{{item.status}}</span><br>
+				        <span class="activeArea" style="height: auto">{{item.area}}</span>
+				        <div class="weui-media-box__desc fr">
+				        	<span class="price createDate" style="vertical-align: bottom;">￥{{item.price}}</span>
+				        	<span class="mediumBtn fullDoneBtn">已结束</span>
+				        </div>
+				      </div>
+				    </a>
+				  </div>
+				</div>
+		    </div>
+		</div>
+
+	</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+	var list_1 = ['全部','预防检测','文化修禅','健康调养','养生旅游','营养调理','运动康复'];
+	var list_2 = ['不限时间','今天','近一周','近一月','近三月','近一年'];
+
+
+	// 公共类函数 以后可抽取
+	function panelImg(){
+		var ant = $('.weui-media-box__bd').height()
+		var fullHeight = $(window).height();
+		var top_offset = $('.weui-tab__bd').offset()
+
+		hbHeight = fullHeight-top_offset.top;
+
+		$('.weui-tab__bd').height(hbHeight)
+		$('.weui-media-box__hd').height(ant)
+		$('.weui-media-box__hd').width(ant)
+
+	}
+
+
+	var fakeMsg = [
+		{
+			title: 'XXX',
+			name: '2018女神节上线马拉松',
+			price: '85.00',
+			status: '进行中',
+			area: '线上活动',
+			price: 168,
+			tip:'新品上架'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止'
+		}
+	]	
+
+	function picker(obj,arr){
+		$(obj).picker({
+		  title: "请选择",
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: arr
+		    }
+		  ],
+		  onClose:function(){
+		  	$.alert(this.cols[0].value)	
+		  	/*轮子选择的value值 this.cols[0].value, 轮子选择的序号 this.cols[0].activeIndex 详情可console.log(this);*/
+		  }
+		})
+	}
+	
+
+	var app = new Vue({
+		el:'#app',
+		mounted:function(){
+			picker('#picker_1',list_1)
+			picker('#picker_2',list_2)
+
+			panelImg() 	
+		},
+		data:{
+			orderList: fakeMsg,
+			list: list_1,
+			active_bar:0
+		}
+	})
+</script>
+</body>
+</html>

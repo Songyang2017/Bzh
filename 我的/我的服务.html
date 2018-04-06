@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>我的服务</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div id="app" class="wallet">
+		<div class="weui-cells">
+			
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的活动</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的订单</p>
+            </div>
+            <div class="weui-cell__ft">5</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的支付</p>
+            </div>
+            <div class="weui-cell__ft">0</div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的收货地址</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的邀请</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的健康档案</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的消息</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的购物车</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img :src="pic" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p>我的成就</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </a>
+        </div>
+	</div>
+
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+
+	var app = new Vue({
+		el:"#app",
+		data:{
+			pic:'../icon/bg-icon.png'
+		}
+	}) 
+
+
+</script>
+</body>
+</html>

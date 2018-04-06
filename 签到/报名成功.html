@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>报名成功</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<style>
+	html{
+		height:auto;
+	}
+</style>
+</head>
+<body>
+	<ul class="check-ins" id="app" v-cloak>
+		<li>
+			<img src="../icon/bg-icon.png" alt="">报名成功！
+		</li>	
+		<li>
+			<div>查看活动订单详情</div>
+		</li>
+		<li>
+			<p>根据相关法律规定，用户需要绑定手机号进行相关认证，请尽快完成手机号绑定进行认证&emsp;<a href="javascript:void(0);">立即绑定</a></p>
+		</li>
+		<li>
+			<img src="../icon/qrcode_for_gh_02d6e13c70af_258.jpg" alt="">
+		</li>
+		<li>
+			<div class="check-ins-tip"><p></p>&emsp;邀请好友一起参与&emsp;<p></p></div>
+			<ul class="check-ins-icon">
+				<li>
+					<img src="../icon/bg-icon.png" alt="">
+					<p>微信好友</p>
+				</li>
+				<li>
+					<img src="../icon/bg-icon.png" alt="">
+					<p>朋友圈</p>
+				</li>
+				<li>
+					<img src="../icon/bg-icon.png" alt="">
+					<p>QQ好友</p>
+				</li>
+				<li>
+					<img src="../icon/bg-icon.png" alt="">
+					<p>QQ空间</p>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<div class="check-ins-tip"><p></p>&emsp;您可能还想参加&emsp;<p></p></div>
+			<div class="weui-tab__bd">
+			    <div class="weui-tab__bd-item weui-tab__bd-item--active">
+			      <div class="weui-panel weui-panel_access">
+					  <div class="weui-panel__bd">
+					    <a href="javascript:void(0);" v-for="item in orderList" class="weui-media-box weui-media-box_appmsg">
+					      <div class="weui-media-box__hd">
+					        <img class="weui-media-box__thumb" src="https://finance.gucheng.com/UploadFiles_7830/201412/2014120815055793.jpg">
+					      </div>
+					      <div class="weui-media-box__bd clearfix" style="position: relative;">
+					        <h4 class="weui-media-box__title activeThemeTitle" style="color:rgba(0, 0, 0, 0.8)"><span><b>{{item.name}}</b></span></h4>
+					        <span class="activeStatus">{{item.status}}</span><br>
+					        <span class="activeArea" style="height: auto">{{item.area}}</span>
+					        <div class="weui-media-box__desc fr">
+					        	<span class="price createDate" style="vertical-align: bottom;">￥{{item.price}}</span>
+					        	<span class="Itemstip">{{item.tip}}</span>&emsp;<span class="mediumBtn fullPayBtn">{{item.btn}}</span>
+					        </div>
+					      </div>
+					    </a>
+					  </div>
+					</div>
+			    </div>
+			</div>
+		</li>
+	</ul>
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+	// 公共类函数 以后可抽取
+	function panelImg(){
+		var ant = $('.weui-media-box__bd').height()
+		var fullHeight = $(window).height();
+		var top_offset = $('.weui-tab__bd').offset()
+
+		hbHeight = fullHeight-top_offset.top;
+
+		// $('.weui-tab__bd').height(hbHeight)
+		$('.weui-media-box__hd').height(ant)
+		$('.weui-media-box__hd').width(ant)
+
+	}
+</script>
+<script>
+	var fakeMsg = [
+		{
+			title: 'XXX',
+			name: '2018女神节上线马拉松',
+			price: '85.00',
+			status: '进行中',
+			area: '线上活动',
+			price: 168,
+			tip:'新品上架',
+			btn:'签  到'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止',
+			btn:'马上抢票'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止',
+			btn:'马上抢票'
+		},
+		{
+			title: 'XXX',
+			name: '亲子活动：儿童瑜伽、父母成长、亲子活动大酬宾',
+			price: '0.00',
+			status: '明天13:00开始',
+			area: '徐汇区',
+			price: 168,
+			tip:'报名即将截止',
+			btn:'马上抢票'
+		}
+	]
+
+	var app = new Vue({
+		el:'#app',
+		mounted:function(){
+			panelImg()
+		},
+		data:{
+			orderList: fakeMsg
+		}
+	})
+</script>	
+</body>
+</html>

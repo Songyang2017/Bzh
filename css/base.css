@@ -5,7 +5,7 @@
 */ 
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */ 
 html { 
-color:black; 
+color:rgba(0, 0, 0, 0.8);; 
 // background:white; 
 } 
 /* 内外边距通常让各个浏览器样式的表现位置不同 */ 
@@ -125,4 +125,4 @@ display:inline;
 .fr { 
 float:right; 
 display:inline; 
-} 
+}

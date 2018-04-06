@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>支付</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../font/style.css">
+<link rel="stylesheet" href="../css/orange.css">
+<link rel="stylesheet" href="../css/layerBZH.css">
+<style>
+	.pay-radio{
+		position: relative;
+		right: 10px;
+
+	}
+</style>
+</head>
+<body>
+	<div class="remaining-body">
+		<div class="remaining-top">
+			<div class="remaining-top-tipbar">	
+				<div>您需要支付的金额(元)</div>
+			</div>
+			<div class="remaining-sum price-color">1800.00</div>
+		</div>
+
+
+		<div class="weui-panel weui-panel_access">
+		  <div class="weui-panel__bd">
+		    <div class="weui-media-box weui-media-box_appmsg" style="padding: 10px">
+		      <div style="margin-right: 12px;">
+		        <i class="weui-media-box__thumb icon-balance" style="font-size: 45px"></i>
+		      </div>
+		      <div class="weui-media-box__bd">
+		        <h4 class="weui-media-box__title">余额支付</h4>
+		        <p class="weui-media-box__desc">使用账户余额</p>
+		      </div>
+		      <div class="pay-radio">
+		      	<input type="radio" id="balance" name="iCheck">
+		      </div>
+		    </div>
+		    <div class="weui-media-box weui-media-box_appmsg" style="padding: 10px">
+		      <div style="margin-right: 12px;">
+		        <i class="weui-media-box__thumb icon-wechatPay" style="font-size: 45px"></i>
+		      </div>
+		      <div class="weui-media-box__bd">
+		        <h4 class="weui-media-box__title">微信支付</h4>
+		        <p class="weui-media-box__desc">使用微信支付</p>
+		      </div>
+		      <div class="pay-radio">
+		      	<input type="radio" id="wechat" name="iCheck">
+		      </div>
+		    </div>
+		    <div class="weui-media-box weui-media-box_appmsg" style="padding: 10px">
+		      <div style="margin-right: 12px;">
+		        <i class="weui-media-box__thumb icon-alipay" style="font-size: 45px"></i>
+		      </div>
+		      <div class="weui-media-box__bd">
+		        <h4 class="weui-media-box__title">支付宝支付</h4>
+		        <p class="weui-media-box__desc">使用支付宝支付</p>
+		      </div>
+		      <div class="pay-radio">
+		      	<input type="radio" id="alipay" name="iCheck">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="submitBtn" onclick="pay()">支 付</div>
+	</div>
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script src="../js/icheck.min.js"></script>
+<script src="../js/layerBZH.js"></script>
+<script>
+//	单选框
+ $(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-orange',
+    radioClass: 'iradio_square-orange',
+    increaseArea: '20%' // optional
+  });
+})
+
+var payWay = null;
+
+// 单选框选择支付方式之后触发的回调函数
+$('input').on('ifChecked', function(e){ //ifCreated 事件应该在插件初始化之前绑定 
+  var target = e.target||e.srcElement;
+  payWay = target.id;
+}); 
+
+function pay(){
+	if(payWay == null){
+		layer.open({
+			content:'请选择您的支付方式！',
+			btn:['确 定']
+		})
+	}else{
+		// console.log(payWay);
+		layer.open({
+			content:'您选择的支付方式是'+payWay,
+			btn:['确 定','取 消'],
+			yes:function(index){
+				//点击确定之后的回调
+				console.log('Bingo');
+				layer.close(index)
+			}
+		})
+	}
+
+	
+}
+
+</script>
+</body>
+</html>

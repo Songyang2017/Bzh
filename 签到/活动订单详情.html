@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>活动订单详情</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/layerBZH.css">
+</head>
+<body>
+<div id="app" class="wallet" v-cloak>
+	<div class="weui-cells" style="margin-bottom: 10px;">
+	  <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>报名人信息</p>
+        </div>
+        <div class="weui-cell__ft">李云龙(1370854235)</div>
+      </a>
+	</div>
+	
+	<ul class="artcile-content">
+		<li>
+			<div class="artcile-pic" style="background-image: url(../icon/bg-icon.png);"></div>
+			<div class="artcile-title" style="justify-content: space-around;">
+				<p>{{msg.name}}</p>
+				<p>{{msg.location}}</p>
+				<p>{{msg.date}}</p>
+			</div>
+		</li>
+	</ul>
+
+	<div class="ele-bill">
+		<div>{{msg.billType}}：￥{{msg.price}}</div>
+		<div>{{msg.name}}&emsp;{{msg.tel}}</div>
+		<div class="bill-btn">
+			<button class="cancle" @click="cancle">取消报名</button><button @click="done" class="done">完成活动</button>
+		</div>
+		<a href="javascript:;" class="view-elebill"><div>查看电子票</div></a>
+	</div>
+	
+	<div class="remaining-body">
+		<div class="ele-bill-ew remaining-card">
+			<div class="remaining-achievement">
+				<div class="remaining-link weui-cell">票总价<div class="weui-cell__ft">￥{{orderMsg.billPrice}}</div></div>
+				<div class="remaining-link weui-cell">优惠<div class="weui-cell__ft">￥{{orderMsg.discount}}</div></div>
+				<div class="remaining-link weui-cell">实际支付金额<div class="weui-cell__ft">￥{{orderMsg.payFor}}</div></div>
+				<div class="remaining-link weui-cell">订单编号<div class="weui-cell__ft">{{orderMsg.orderNum}}</div></div>
+				<div class="remaining-link weui-cell">创建实际<div class="weui-cell__ft">{{orderMsg.createDate}}</div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../js/layerBZH.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script>
+	var fakeMsg = {
+				name: '李云龙',
+				tel:'1370854235',
+				location:'上海市徐汇区德平路123号右拐小胡同哈哈',
+				date:'2018/03/31-2018/04/15',
+				billType:'免费票',
+				price:'0.00'
+			}
+	var orderMsg={
+		billPrice:0,
+		discount:0,
+		payFor:0,
+		orderNum:'083453119887',
+		createDate:'2017-05-03'
+	}
+
+
+		var app = new Vue({
+			el:"#app",
+			data:{
+				msg:fakeMsg,
+				orderMsg:orderMsg
+			},
+			mounted:function(){
+			},
+			methods:{
+				cancle(){
+					layer.open({
+						content:'活动未开始，确定要取消吗？',
+						btn:['确定','取消'],
+					})
+				},
+				done(){
+					layer.open({
+						content:'活动未完成，确定要取消吗？',
+						btn:['确定','取消'],
+					})
+				}
+			}
+		})
+</script>	
+</body>
+</html>

@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<title>编辑收货地址</title>
-<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/index.css">
+<title>编辑收货人</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
 <style>
-	*{
-		font-size:14px;
-	}
+*{
+	font-size:14px;
+}
 </style>
 </head>
 <body>
+
 	<div class="form" style="position: relative;height: 100%;">
 		<div class="weui-cells weui-cells_form">
 		  <div class="weui-cell">
@@ -53,35 +54,21 @@
 		  </div>
 		</div>
 
-		<div class="fixef-bot-btn">保 存</div>
+		<div class="submitBtn">保 存</div>
 	</div>
 
 
 
 <div id="allmap"></div>
-<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>	
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
 <script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AeeTrXplpLx07vZ7ZP0VnPBHnVtpGMhC"></script>
 <script>
    $("#city-picker").cityPicker({
      title: "请选择收货地址"
    });
 
-  	// 百度地图API功能
-	var map = new BMap.Map("allmap");
-	var point = new BMap.Point(116.331398,39.897445);
-	map.centerAndZoom(point,12);
-
-	function myFun(result){
-		var cityName = result.name;
-		map.setCenter(cityName);
-		console.log(result);
-		// $.alert("当前定位城市:"+cityName);
-	}
-	var myCity = new BMap.LocalCity();
-	myCity.get(myFun);
 </script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>layer-index</title>
+<link rel="stylesheet" href="layer_mobile/need/layer.css">
+<link rel="stylesheet" href="../css/index.css">
+<style>
+	.alert,.bot{
+		width: 100px;
+		height: 100px;
+		background-color: #fff;
+		margin: 0 auto 10px;
+	}
+	*{
+
+	}
+</style>
+</head>
+<body>
+
+<div class="alert" onclick="alert()">alert</div>
+<div class="bot" onclick="bot()">bot</div>
+
+<!-- <div id="layui-m-layer1" class="layui-m-layer layui-m-layer1" index="1">
+    <div class="layui-m-layershade"></div>
+    <div class="layui-m-layermain">
+        <div class="layui-m-layersection">
+            <div class="layui-m-layerchild  layui-m-anim-up" style="position: fixed;bottom: 0;left: 0;width: 100%;height:280px;border:none;">
+                <div class="layui-m-layercont">
+	                <div class="close"></div>
+	                <div class="back" onclick="backTickets()"></div>
+                	<div class="content" id="ticketsCheck" style="width: 200%;">
+                		<div class="slide">
+		                	<div class="title">请选择</div>
+	                		<p>请选择票种</p>
+	                		<div class="tickets"><span>观展票</span><span>免费</span></div>
+	                		<div class="tickets"><span>赞助</span><span>￥99</span></div>
+	                		<p>选择数量</p>
+	                		<div class="p-setNum" style="box-sizing:border-box;float:none;margin: 5px 0;">
+	                            <span class="btn-min">-</span>
+	                            <input type="tel" name="cpsl" maxlength="3" value="1">
+	                            <span class="btn-add">+</span>
+	                        </div>
+	                    </div>
+	                    <div class="slide">
+		                	<div class="title">请填写报名信息</div>
+	                		<p>姓名</p>
+	                		<input class="tickets" type="text">
+	                		<p>电话</p>
+	                		<input class="tickets" type="text">
+	                    </div>
+                	</div>
+				  	<div class="tickets-submit">
+				  		<div class="price">合计：0</div>
+				  		<div></div>
+				  	  	<div class="subOrdBtn" onclick="goNext()">下一步</div>
+				  	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<script src="http://lib.sinaapp.com/js/jquery/1.6/jquery.min.js"></script>
+<script src="layer_mobile/layer.js"></script>
+<script> 
+	var ticketsCheck = document.getElementById('ticketsCheck')
+	// var back = document.getElementsByClassName('back')[0];
+
+
+	// function backTickets(){
+	// 	ticketsCheck.style.left = 0;
+	// 	back.style.display = 'none'
+	// }
+	// function goNext(){
+	// 	// console.log(ticketsCheck.style);
+
+	// 	if(ticketsCheck.style.left == 0 ||ticketsCheck.style.left == '0px'){
+	// 		ticketsCheck.style.left = '-100%';
+	// 		back.style.display = 'block'
+	// 	}
+	// }
+
+
+
+	function alert(){
+		layer.open({
+			content:'确定签到吗?',
+			btn:['确定','取消'],
+		})
+	}
+
+	function bot(){
+		layer.open({
+			type:1,
+			content:`<div class="close" onclick="layer.closeAll()"></div>
+	                <div class="back"></div>
+                	<div class="content" id="ticketsCheck" style="width: 200%;">
+                		<div class="slide">
+		                	<div class="title">请选择</div>
+	                		<p>请选择票种</p>
+	                		<div class="tickets"><span>观展票</span><span>免费</span></div>
+	                		<div class="tickets"><span>赞助</span><span>￥99</span></div>
+	                		<p>选择数量</p>
+	                		<div class="p-setNum" style="box-sizing:border-box;float:none;margin: 5px 0;">
+	                            <span class="btn-min">-</span>
+	                            <input type="tel" name="cpsl" maxlength="3" value="1">
+	                            <span class="btn-add">+</span>
+	                        </div>
+	                    </div>
+	                    <div class="slide">
+		                	<div class="title">请填写报名信息</div>
+	                		<p>姓名</p>
+	                		<input class="tickets" type="text">
+	                		<p>电话</p>
+	                		<input class="tickets" type="text">
+	                    </div>
+                	</div>
+				  	<div class="tickets-submit">
+				  		<div class="price">合计：0</div>
+				  		<div></div>
+				  	  	<div class="subOrdBtn" id="payMethod">下一步</div>
+				  	</div>`,
+			anim:'up',
+			style:'position: fixed;bottom: 0;left: 0;width: 100%;height:280px;border:none;',
+			success:function(elem){
+				var back = document.getElementsByClassName('back')[0];
+				var ticketsCheck= document.getElementById('ticketsCheck');
+
+				$(".back").click(function(){
+					$(this).hide();
+					$('#ticketsCheck').css({'left':0})
+				})
+
+				$('.subOrdBtn').click(function(){
+					if(ticketsCheck.style.left == 0 ||ticketsCheck.style.left == '0px'){
+						$('#ticketsCheck').css({'left':'-100%'});
+						$(".back").show();
+					}
+				})
+
+				
+			}
+		})
+	}
+</script>
+</body>
+</html>

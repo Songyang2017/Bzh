@@ -19,7 +19,7 @@
 	-moz-transform: scale(@x, @y);	
 }
 
-.box-shadow (@x, @y, @blur, @color) {
+.box-shadow (@x, @y, @blur,@radius, @color) {
   box-shadow: @arguments;
   -moz-box-shadow: @arguments;
   -webkit-box-shadow: @arguments;
@@ -34,4 +34,11 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: @x;
 	overflow: hidden;
+}
+
+.linear-gradient(@x,@y){
+	background: linear-gradient(@x,@y);
+	background: -o-linear-gradient(@x,@y);
+	background: -moz-linear-gradient(@x,@y);
+	background: -webkit-linear-gradient(@x,@y);
 }

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>确认订单</title>
+<link rel="stylesheet" href="../css/weui.min.css">
+<link rel="stylesheet" href="../css/jquery-weui.min.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/index.css">
+<style>
+	*{
+		font-size: 14px;
+	}
+</style>
+</head>
+<body>
+<div class="weui-tab" id="app" v-cloak>
+	  <div class="weui-navbar flex channel_1">
+	    <img width="25" height="25" src="../icon/地址-2.png" alt="">
+	    <div class="channel_2">
+	    	<p v-html="host.name"></p>
+	    	<p v-html="host.address" class="no-wrap"></p>
+	    </div>
+	    <div class="weui-cell_access">
+	    	<div class="weui-cell__ft"></div>
+	    </div>
+	  </div>
+
+	  <div class="weui-tab__bd" id="wrapper">
+	    <div class="weui-tab__bd-item weui-tab__bd-item--active">
+	      <div class="weui-panel weui-panel_access" v-for="item in orderList">
+			  <div class="weui-panel__hd">{{item.title}} <span class="fr status_alive" v-if="item.status" v-html="item.status"></span></div>
+			  <div class="weui-panel__bd">
+			    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+			      <div class="weui-media-box__hd">
+			        <img class="weui-media-box__thumb" src="https://finance.gucheng.com/UploadFiles_7830/201412/2014120815055793.jpg">
+			      </div>
+			      <div class="weui-media-box__bd clearfix" style="position: relative;">
+			        <h4 class="weui-media-box__title"><span>{{item.name}}</span><span class="price fr"><b>￥{{item.price}}</b></span></h4>
+			        <span class="createDate">{{item.createDate}}</span>
+			        <div class="weui-media-box__desc fr" style="margin-top: 20px;">
+			        	<span class="">x{{item.num}}</span>
+			        </div>
+			      </div>
+			    </a>
+			  </div>
+			</div>
+			<div style="height: 50px"></div>
+	    </div>
+	  </div>
+
+	
+
+	  <div class="botBar" style="width: 100%;position: fixed;bottom: 0;">
+		<div class="submitOrder weui-flex">
+			<div class="weui-flex__item textLeft" style="padding:14px">配送方式</div>
+			<div class="weui-flex__item textRight" style="padding:14px">普通快递</div>
+		</div>
+		<div class="submitOrder weui-flex">
+			<div class="weui-flex__item textLeft" style="padding:14px">共{{orderList.length}}件商品</div>
+			<div class="weui-flex__item textRight price" style="padding:14px">合计：￥{{Sum}}</div>
+		</div>
+	  	<div class="submitOrder weui-flex">
+	  		<div class="weui-flex__item price">合计：￥315</div>
+	  	  	<div class="weui-flex__item"></div>
+	  	  	<div class="weui-flex__item textCenter subOrdBtn" id="payMethod" onclick="payMethod()">结算
+
+
+	  	  	</div>
+	  	</div>
+	  </div>
+</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-weui.min.js"></script>	
+<script type="text/javascript" src="http://static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+<script>
+	var fakeMsg = [
+		{
+			title: 'XXX医疗器械专型',
+			name: '液体营养剂',
+			price: '85.00',
+			num: 1,
+			host:'0'
+		},
+		{
+			title: '益丰大药房',
+			name: '健康养生专家讲堂',
+			price: '0.00',
+			createDate: '2018-03-01',
+			num: 2,
+			host:'0'
+		},
+		{
+			title: '益丰大药房',
+			name: '健康养生专家讲堂',
+			price: '0.00',
+			createDate: '2018-03-01',
+			num: 2,
+			host:'1'
+		},
+		{
+			title: '益丰大药房',
+			name: '健康养生专家讲堂',
+			price: '0.00',
+			createDate: '2018-03-01',
+			num: 2,
+			host:'1'
+		}
+	]
+
+	var hostMsg = {
+		name: '李云龙',
+		address: '晋西北八路军独立团团长晋西北独立团团长晋西北独立团团长晋西北独立团团长',
+		phone: '13298235165'
+	}
+
+	var myScroll
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			orderList: fakeMsg,
+			host: hostMsg,
+			activeTitle: 0
+		},
+		computed:{
+			Sum:function(){
+				var sum = 0;
+				for(var i=0;i<this.orderList.length;i++){
+					sum = sum + new Number(this.orderList[i].price);
+				}
+				console.log(sum);
+				return sum;
+			}
+		},
+		mounted:function(){
+			var mt=$('.botBar').height();
+			$('.weui-tab__bd').css({'padding-bottom':mt})
+
+			setTimeout(function(){
+				myScroll = new IScroll('#wrapper', {
+				    mouseWheel: true,
+				    scrollbars: true
+				});
+			},0)
+		},
+		methods:{
+
+		}
+	})
+
+	function payMethod(){
+		$("#payMethod").select({
+		  title: "请选择支付方式",
+		  items: [ "余额","支付宝", "微信"],
+		  onClose:function(){
+		  	// console.log(this.items);
+		  	// $.alert(this)
+		  }
+		});
+	}
+</script>
+</body>
+</html>

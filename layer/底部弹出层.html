@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>底部弹出层</title>
+<link rel="stylesheet" href="layer_mobile/need/layer.css">
+<link rel="stylesheet" href="../css/index.css">
+<style>
+	.size_select{
+		padding: 5px 10px;
+		background-color: orange;
+		color:#fff;
+	}	
+
+</style>
+</head>
+<body>
+
+	<div class="size_select">点击</div>
+
+	<!-- <div class="layer_box">
+	    <div class="layer_time">
+	        <div class="layer_pro_info">
+	            <img class="layer_pro_img" src="//img01.hua.com/uploadpic/newpic/9012201.jpg_220x240.jpg" alt="">
+	            <img onclick="CloseLayer();" class="close_date" src="//img02.hua.com/m/close_date.png" alt="">
+	            <div class="layer_pro_text">
+	                <p class="layer_pro_name">馨情无限</p>
+	                <p class="layer_pro_price">￥246</p>
+	            </div>
+	        </div>
+	        <div class="guige">
+	            <p class="guige_title">选择</p>
+	            <ul class="select_guige">
+	                <li id="9012196" class="">向阳的温暖</li>
+	                <li id="9012200" class="">暖暖的问候</li>
+	                <li class="active" id="9012201">馨情无限</li>
+	                <li id="9012215" class="">向日葵的夏天</li>
+	                <li id="9012221" class="">浪漫告白</li>
+	                <li id="9012222" class="">爱是唯一</li>
+	                <li id="9012223" class="">我只钟情你</li>
+	            </ul>
+	        </div>
+	        <div class="pro_num_change">
+	            <p class="num_title">数量</p>
+	            <div class="cal_num"><span class="add">+</span><span class="num_text">1</span><span class="decrease">-</span>
+	            </div>
+	        </div>
+	    </div>
+	    <ul class="layer_buy">
+	        <li class="layer_add_cart"><a href="/shopping/addtocart?product_code=9012201" id="addCart2" onclick="return DoAction(this)">加入购物车</a>
+	        </li>
+	        <li class="layer_go_buy"><a href="/shopping/soonbuy?pp=9012201" id="soonBuy2" onclick="return DoAction(this)">立即购买</a>
+	        </li>
+	    </ul>
+	</div> -->
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="layer_mobile/layer.js"></script>
+<script>
+	
+	$('.size_select').on('click', function () {
+            layer.open({
+                type: 1
+                , shadeClose: true
+                , content: '<div class="layer_box"><div class="layer_time"><div class="layer_pro_info"><img class="layer_pro_img" src="http://127.0.0.1:8081/jsk_website/static/images/bzh/icon/bg-icon.png" alt=""><img onclick="CloseLayer();" class="close_date" src="http://127.0.0.1:8081/jsk_website/static/images/bzh/icon/bg-icon.png" alt=""><div class="layer_pro_text"><p class="layer_pro_name">馨情无限</p><p class="layer_pro_price">￥129</p></div></div><div class="guige"><p class="guige_title">选择</p><ul class="select_guige"></ul></div><div class="pro_num_change"><p class="num_title">数量</p><div class="cal_num"><span class="add">+</span><span class="num_text">1</span><span class="decrease">-</span></div></div></div><ul class="layer_buy"><li class="layer_add_cart"><a href="/Shopping/addtocart?product_code=9012201" id="addCart2" onclick="return DoAction(this)">加入购物车</a></li><li class="layer_go_buy"><a href="/Shopping/soonbuy?pp=9012201" id="soonBuy2" onclick="return DoAction(this)">立即购买</a></li></ul></div>'
+                , anim: 'up'
+                , style: 'position:fixed; bottom:0; left:0; width: 100%; height: 408px; padding: 5px 0 10px 0; border:none;box-sizing: border-box;'
+                , success: function () {
+                    $('.layui-m-layerchild').css('padding', '0px');
+                    $('.layui-m-layercont').css('height', '100%');
+                    $(".select_guige").html(chooseItemHtml);
+                    if (chooseItem != null) {
+                        var gmj = IsVip ? chooseItem.Yhj : chooseItem.Sjg;
+                        $(".layer_pro_price").html("￥" + gmj);
+                        $(".layer_pro_name").html(chooseItem.Cpmc);
+                        $(".layer_pro_img").attr("src", "//img01.hua.com/uploadpic/newpic/" + chooseItem.Pp + ".jpg_220x240.jpg");
+                    }
+                    $('.select_guige li').on('click', function () {
+                        var ppid = $(this).attr("id");
+                        ShowChooseItem(ppid);
+                        $(this).addClass('active').siblings().removeClass('active');
+                        if (chooseItem != null) {
+                            var gmj = IsVip ? chooseItem.Yhj : chooseItem.Sjg;
+                            $(".layer_pro_price").html("￥" + gmj);
+                            $(".layer_pro_name").html(chooseItem.Cpmc);
+                            $(".layer_pro_img").attr("src", "//img01.hua.com/uploadpic/newpic/" + chooseItem.Pp + ".jpg_220x240.jpg");
+                            $("#addCart2").attr("href", "/shopping/addtocart?product_code=" + chooseItem.Pp);
+                            $("#soonBuy2").attr("href", "/shopping/soonbuy?pp=" + chooseItem.Pp);
+                        }
+                    });
+                    $('.add').on('click', function () {
+                        num = num + 1;
+                        $(".num_text").html(num);
+                    })
+                    $('.decrease').on('click', function () {
+                        if (num > 1) {
+                            num = num - 1;
+                            $(".num_text").html(num);
+                        }
+                    });
+                    $('.layui-m-layershade').click(function () {
+                        CloseLayer();
+                    });
+                }
+            });
+
+         })
+
+
+</script>
+</body>
+</html>
